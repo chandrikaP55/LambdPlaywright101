@@ -1,0 +1,11 @@
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: Get Core & Configure
+    before: |
+      wget https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
+      chmod u+x hyperexecute
+
+    init: |
+      echo "Starting Execution"
+      ./hyperexecute --user chandrikasunkara07 --key LT_iAixXKOWhEAwMnoruJJLZFqC0cj0GrMT8uvi1KrAscaYkYT --config Hyperexecute.yaml
+      echo "Execution Completed"

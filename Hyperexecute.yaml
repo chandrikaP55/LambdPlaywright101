@@ -1,0 +1,33 @@
+---
+version: "0.1"
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+parallelism: 2
+runson: ${matrix.os}
+matrix:
+  os: ["win", "linux"]
+  browser: ["Chrome"]
+  version: ["latest"]
+autosplit: true
+retryOnFailure: true
+maxRetries: 1
+concurrency: 1
+pre:
+  - npm install
+  - npx playwright install chromium
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep -lr 'test' tests
+testRunnerCommand: npx playwright test $test
+
+uploadArtifacts:
+  - name: Execution Report
+    path:
+      - playwright-report/index.html
+
+jobLabel: [Playwright - Certification Build]

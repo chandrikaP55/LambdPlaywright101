@@ -1,0 +1,14 @@
+node_modules
+playwright-report
+test-results
+**/*.png
+.hyperexecute
+.update*
+.hyperexecute/
+hyperexecute
+hyperexecute-cli.log
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
